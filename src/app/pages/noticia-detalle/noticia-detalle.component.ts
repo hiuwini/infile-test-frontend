@@ -1,38 +1,35 @@
-// src/app/pages/noticia-detalle/noticia-detalle.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NoticiasService } from '../../core/services/noticias.service';
 import { Noticia } from '../../shared/models/noticia.model';
 import { CommonModule } from '@angular/common';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    MatProgressSpinnerModule
+  ],
   selector: 'app-noticia-detalle',
-  template: `
-    <button (click)="volver()">Volver</button>
-
-    <div *ngIf="noticia">
-      <h1>{{ noticia.titulo }}</h1>
-      <img [src]="noticia.imagen" alt="Imagen Noticia" width="400">
-      <p>{{ noticia.descripcion }}</p>
-      <p>Fecha: {{ noticia.fechaPublicacion }}</p>
-    </div>
-
-    <div *ngIf="recomendadas && recomendadas.length">
-      <h3>Noticias Recomendadas</h3>
-      <ul>
-        <li *ngFor="let rec of recomendadas">
-          <a [routerLink]="['/noticias', rec.id]">{{ rec.titulo }}</a>
-        </li>
-      </ul>
-    </div>
-  `
+  templateUrl: './noticia-detalle.component.html',
+  styleUrls: ['./noticia-detalle.component.scss']
 })
 export class NoticiaDetalleComponent implements OnInit {
   noticia?: Noticia;
   recomendadas: Noticia[] = [];
   errorMessage = '';
+  isLoading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -47,8 +44,14 @@ export class NoticiaDetalleComponent implements OnInit {
 
   cargarNoticia(id: number): void {
     this.noticiasService.getNoticiaDetalle(id).subscribe({
-      next: data => this.noticia = data,
-      error: _ => this.errorMessage = 'Error al cargar la noticia.'
+      next: data => {
+        this.noticia = data;
+        this.isLoading = false;
+      },
+      error: _ => {
+        this.errorMessage = 'Error al cargar la noticia.';
+        this.isLoading = false;
+      }
     });
   }
 

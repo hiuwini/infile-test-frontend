@@ -1,4 +1,3 @@
-// src/app/core/services/noticias.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Noticia } from '../../shared/models/noticia.model';

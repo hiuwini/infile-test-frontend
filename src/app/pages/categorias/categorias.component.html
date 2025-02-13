@@ -1,13 +1,15 @@
-<!-- src/app/pages/categorias/categorias.component.html -->
 <div class="categorias-container">
-    <h2>Listado de Categorías</h2>
+    <h1>Explora por Categoría</h1>
   
     <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
   
-    <ul>
-      <li *ngFor="let cat of categorias">
-        {{ cat.nombre }}
-      </li>
-    </ul>
+    <mat-spinner *ngIf="isLoading" class="loading-spinner"></mat-spinner>
+  
+    <div class="categorias-grid" *ngIf="!isLoading">
+      <mat-card *ngFor="let cat of categorias" class="categoria-card">
+        <mat-icon class="categoria-icon">category</mat-icon>
+        <h3>{{ cat.nombre }}</h3>
+      </mat-card>
+    </div>
   </div>
   

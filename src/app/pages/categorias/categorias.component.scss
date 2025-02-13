@@ -1,13 +1,74 @@
 .categorias-container {
-    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: radial-gradient(circle, rgba(40, 40, 50, 0.9) 0%, rgba(10, 10, 20, 1) 100%);
+    padding: 20px;
+    text-align: center;
   
-    h2 {
-      margin-bottom: 1rem;
-    }
-  
-    .error-msg {
-      color: red;
+    h1 {
+      font-size: 2rem;
       font-weight: bold;
+      color: #ff4081;
+      text-transform: uppercase;
+      margin-bottom: 20px;
     }
+  }
+  
+  .error-msg {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Estilos del grid */
+  .categorias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  /* Estilos de las tarjetas */
+  .categoria-card {
+    background: rgba(30, 30, 40, 0.95);
+    color: white;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(255, 64, 129, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 8px 20px rgba(255, 64, 129, 0.6);
+    }
+  
+    h3 {
+      font-size: 1.3rem;
+      color: #ff4081;
+      margin: 10px 0 0;
+    }
+  }
+  
+  /* Icono */
+  .categoria-icon {
+    font-size: 3rem;
+    color: #ff4081;
+    margin-bottom: 10px;
   }
   

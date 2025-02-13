@@ -4,14 +4,19 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.services';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   standalone: true,
-  // 2) Agregas 'MatToolbarModule' a la lista de imports
   imports: [
     CommonModule,
     RouterModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule
   ],
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

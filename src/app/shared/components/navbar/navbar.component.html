@@ -1,18 +1,27 @@
-  <mat-toolbar>
-  
-    <span class="nav-title">Noticias App</span>
+<mat-toolbar class="navbar">
+    <span class="nav-title">Infile News</span>
   
     <span class="spacer"></span>
   
-    <button mat-button routerLink="/">Inicio</button>
-    <button mat-button routerLink="/categorias">Categorías</button>
+    <!-- Mostrar opciones solo si el usuario está autenticado -->
+    <ng-container *ngIf="isAuthenticated()">
+      <button mat-button routerLink="/" class="nav-button">Noticias</button>
+      <button mat-button routerLink="/categorias" class="nav-button">Categorías</button>
+    </ng-container>
   
-    <!-- Mostrar "Logout" si está autenticado, "Login" si no lo está -->
-    <button mat-button *ngIf="!isAuthenticated()" routerLink="/login">
-      Iniciar Sesión
-    </button>
-    <button mat-button *ngIf="isAuthenticated()" (click)="logout()">
-      Cerrar Sesión
+    <!-- Menú de usuario -->
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item *ngIf="!isAuthenticated()" routerLink="/login">
+        <mat-icon>login</mat-icon> Iniciar Sesión
+      </button>
+      <button mat-menu-item *ngIf="isAuthenticated()" (click)="logout()">
+        <mat-icon>logout</mat-icon> Cerrar Sesión
+      </button>
+    </mat-menu>
+  
+    <!-- Botón de menú con icono -->
+    <button mat-icon-button [matMenuTriggerFor]="userMenu" class="user-icon">
+      <mat-icon>account_circle</mat-icon>
     </button>
   </mat-toolbar>
   

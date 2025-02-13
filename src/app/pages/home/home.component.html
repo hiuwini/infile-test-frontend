@@ -1,0 +1,33 @@
+<div class="home-container">
+    <!-- Hero principal -->
+    <div class="hero-banner" *ngIf="noticias.length > 0">
+      <div class="hero-content">
+        <h1>{{ noticias[0].titulo }}</h1>
+        <p>{{ noticias[0].descripcion }}</p>
+        <button mat-raised-button color="accent" [routerLink]="['/noticias', noticias[0].id]">Leer más</button>
+      </div>
+      <img [src]="noticias[0].urlImagen" alt="Noticia destacada">
+    </div>
+  
+    <!-- Spinner de carga -->
+    <mat-progress-spinner *ngIf="isLoading" mode="indeterminate" class="spinner"></mat-progress-spinner>
+  
+    <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
+  
+    <!-- Grid de noticias -->
+    <mat-grid-list [cols]="gridCols" [rowHeight]="'350px'" class="news-grid" *ngIf="noticias.length > 1">
+      <mat-grid-tile *ngFor="let noticia of noticias.slice(1)">
+        <mat-card class="news-card">
+          <img mat-card-image [src]="noticia.urlImagen" alt="Imagen Noticia">
+          <mat-card-content>
+            <h3>{{ noticia.titulo }}</h3>
+            <p>{{ noticia.descripcion }}</p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" [routerLink]="['/noticias', noticia.id]">Ver más</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  
