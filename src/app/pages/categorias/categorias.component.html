@@ -1,0 +1,13 @@
+<!-- src/app/pages/categorias/categorias.component.html -->
+<div class="categorias-container">
+    <h2>Listado de Categorías</h2>
+  
+    <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
+  
+    <ul>
+      <li *ngFor="let cat of categorias">
+        {{ cat.nombre }}
+      </li>
+    </ul>
+  </div>
+  

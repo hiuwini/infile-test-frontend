@@ -1,0 +1,18 @@
+  <mat-toolbar>
+  
+    <span class="nav-title">Noticias App</span>
+  
+    <span class="spacer"></span>
+  
+    <button mat-button routerLink="/">Inicio</button>
+    <button mat-button routerLink="/categorias">Categorías</button>
+  
+    <!-- Mostrar "Logout" si está autenticado, "Login" si no lo está -->
+    <button mat-button *ngIf="!isAuthenticated()" routerLink="/login">
+      Iniciar Sesión
+    </button>
+    <button mat-button *ngIf="isAuthenticated()" (click)="logout()">
+      Cerrar Sesión
+    </button>
+  </mat-toolbar>
+  
